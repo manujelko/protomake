@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message DummyRequest {
+    string dummy_string = 1;
+    int32 dummy_int = 2;
+    float dummy_float = 3;
+    bool dummy_bool = 4;
+}
+
+message DummyResponse {
+    message DummyResult {
+        repeated string dummy_data = 1;
+    }
+    message DummyError {
+        string dummy_message = 1;
+    }
+    DummyResult result = 1;
+    DummyError error = 2;
+}
+
+service DummyService {
+    rpc DummyCall (DummyRequest) returns (DummyResponse);
+}
