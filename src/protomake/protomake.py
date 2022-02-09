@@ -80,6 +80,6 @@ def fix_imports(f: Path) -> None:
     new_content = []
     for line in f.read_text().split("\n"):
         if re.match(r"^import .*pb2.*", line) and "google" not in line:
-            line = re.sub(r"^(import .*pb2*.)", r"from .\1", line)
+            line = re.sub(r"^(import .*pb2*.)", r"from . \1", line)
         new_content.append(line)
     f.write_text("\n".join(new_content))

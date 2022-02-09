@@ -39,7 +39,7 @@ def test_good(runner: CliRunner, temp: Path) -> None:
     assert {"good_pb2.py", "good_pb2.pyi", "good_pb2_grpc.py"}.issubset(set(f.name for f in temp.iterdir()))
     assert "THIS SHOULD NOT EXIST" not in (temp / "good_pb2.py").read_text()
     # check that imports are fixed
-    assert (temp / "good_pb2_grpc.py").read_text().split("\n")[4] == "from .import good_pb2 as good__pb2"
+    assert (temp / "good_pb2_grpc.py").read_text().split("\n")[4] == "from . import good_pb2 as good__pb2"
 
 
 def test_bad_proto(runner: CliRunner, temp: Path) -> None:
